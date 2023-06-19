@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Update the package index and upgrade the system packages
+sudo apt update
+sudo apt upgrade -y
+
+# Install Java Runtime Environment (JRE)
+sudo apt install -y default-jre
+
+# Add the Jenkins repository key to the system
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+# Add the Jenkins repository to the system
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+# Update the package index and install Jenkins
+sudo apt update
+sudo apt install -y jenkins
+
+# Start the Jenkins service and enable it to start on boot
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
