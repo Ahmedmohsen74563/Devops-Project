@@ -10,7 +10,7 @@ sudo mv kops /usr/local/bin/kop
 #creare configurations for cluster with:
 kops create cluster \
 --name=ahmed-mohsen.com \
---state=s3://vpro-kops-s3 \
+--state=s3://kops-vpro-s3 \
 --dns=none \
 --zones=us-east-2a,us-east-2b \
 --node-count=2 \
@@ -22,12 +22,10 @@ kops create cluster \
 --topology=private
 ######################################################
 #configure and create your cluster with:
-kops update cluster --name my-cluster.example.com --state=s3://vpro-kops-s3 --yes --admin
+kops update cluster --name ahmed-mohsen.com --state=s3://vpro-kops-s3 --yes --admin
 kops validate cluster --state=s3://vpro-kops-s3
 sudo kubectl get nodes
-
-
-
+kops delete cluster --name ahmed-mohsen.com --state=s3://vpro-kops-s3 --yes
 
 
 
