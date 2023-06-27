@@ -57,7 +57,7 @@ pipeline {
             }
         }
         stage('Kubernetes Deploy') {
-	        agent { label 'EKS' }
+	        agent { label 'KOPS' }
                 steps {
                     sh "eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --node-type t3.small --nodes 2"
                     sh "kubectl apply -f Devops-Project/kubernetes "
