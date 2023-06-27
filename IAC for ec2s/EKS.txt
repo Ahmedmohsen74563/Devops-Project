@@ -59,7 +59,6 @@ eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --n
 #configure and create your cluster with:
 eksctl delete cluster -n ahmed-mohsen
 sudo kubectl get nodes
-kops delete cluster --name ahmed-mohsen.com --state=s3://vpro-kops-s3 --yes
 
 
 

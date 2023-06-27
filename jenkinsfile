@@ -1,0 +1,68 @@
+pipeline {
+    agent any
+    environment {
+        registry = "ahmedmohsen98/vp-app"
+        registryCredential = 'dockerhub'
+        scannerHome = tool 'sonar'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean install'
+                archiveArtifacts artifacts: 'target/**', fingerprint: true
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                sh 'mvn -B test'
+            }
+        }
+        stage('Integration Test') {
+            steps {
+                sh 'mvn -B integration-test'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker rmi ${registry}:${env.BUILD_NUMBER} || true'
+                sh 'docker build -t ${registry}:${env.BUILD_NUMBER} -f Devops-Project/Docker files/myapp .'
+            }
+        }
+        stage('Publish Docker Image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+              }
+            }
+          }
+                }
+        stage('CODE ANALYSIS with SONARQUBE') {
+            steps {
+                withSonarQubeEnv('sonar-pro') {
+                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                   -Dsonar.projectName=vprofile-repo \
+                   -Dsonar.projectVersion=1.0 \
+                   -Dsonar.sources=src/ \
+                   -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+                }
+
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('Kubernetes Deploy') {
+	        agent { label 'EKS' }
+                steps {
+                    sh "eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --node-type t3.small --nodes 2"
+                    sh "kubectl apply -f Devops-Project/kubernetes "
+            }
+        }
+            }
+        }
+        
