@@ -3,7 +3,7 @@ pipeline {
     environment {
         registry = "ahmedmohsen98/vp-app"
         registryCredential = 'dockerhub'
-        scannerHome = tool 'sonar'
+        scannerHome = tool 'Sonar'
     }
     stages {
         stage('Build') {
