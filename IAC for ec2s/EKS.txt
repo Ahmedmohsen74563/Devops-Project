@@ -53,7 +53,7 @@ tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 sudo mv /tmp/eksctl /usr/local/bin
 ####################################################
 #creare configurations for cluster with:
-eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --node-type t2.micro --nodes 2
+eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --node-type t3.small --nodes 2
 eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --node-type t2.micro --nodes 2 --node-role-arn <IAM role ARN>
 ######################################################
 #configure and create your cluster with:
