@@ -22,12 +22,13 @@ pipeline {
                 sh 'mvn -B integration-test'
             }
         }
-        stage('Build Docker Image') {
+        stage('Building image') {
             steps {
-                sh 'docker rmi ${registry}:${BUILD_NUMBER} || true'
-                sh 'docker build -t ${registry}:${BUILD_NUMBER} -f Devops-Project/Dockerfiles/myapp'
+                script {
+                    dockerImage = docker.build(registry + ":$BUILD_NUMBER", "-f Devops-Project/Dockerfiles/myapp .")
+                }
             }
-        }
+            }
         stage('Publish Docker Image') {
             steps{
                 script {
