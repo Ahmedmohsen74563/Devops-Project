@@ -45,8 +45,9 @@ pipeline {
           }
         }
         stage('Kubernetes Deploy') {
+	        agent { label 'KOPS' }
                 steps {
-                    sh "kubectl apply -Rf kubernetes/ "
+                    sh "kubectl apply -Rf kubernetes/"
             }
         }
             }
