@@ -59,6 +59,7 @@ eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --n
 #configure and create your cluster with:
 eksctl delete cluster -n ahmed-mohsen
 sudo kubectl get nodes
+aws cloudformation delete-stack --stack-name eksctl-ahmed-mohsen-cluster
 
 
 
