@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vp-app
-  spec:
+spec:
   replicas: 2
   selector:
     matchLabels:
@@ -33,16 +33,20 @@ metadata:
             secretKeyRef:
               name: vp-secret
               key: mysql-user
-        - name: memc-URL
+        - name: Rabmq-URL
           valueFrom:
             configMapKeyRef:
               name: vp-configmap
               key: rabmq-url
-  dependsOn:
-  - apiVersion: v1
-    kind: StatefulSet
-    name: my-sql
-
+        - name: memc-URL
+          valueFrom:
+            configMapKeyRef:
+              name: vp-configmap
+              key: memc-url  
+      initContainers:
+      - name: wait-for-mysql
+        image: busybox
+        command: ['sh', '-c', 'until nslookup my-sql-0.my-sql; do echo waiting for my-sql; sleep 2; done;']
 ---
 apiVersion: v1
 kind: Service

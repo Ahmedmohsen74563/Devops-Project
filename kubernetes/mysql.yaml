@@ -43,20 +43,6 @@ spec:
         awsElasticBlockStore:
           volumeID: vol-06eef66c0e4e7a478
           fsType: ext4
-  dependsOn:
-  - apiVersion: v1
-    kind: ConfigMap
-    name: vp-configmap
-  - apiVersion: v1
-    kind: vp-secret
-    name: my-secret
-  - apiVersion: v1
-    kind: Deployment
-    name: rabmq
-  - apiVersion: v1
-    kind: Deployment
-    name: memcached
-
 ---
 
 apiVersion: v1

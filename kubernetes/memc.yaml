@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: memcached
-  spec:
+spec:
   replicas: 1
   selector:
     matchLabels:
@@ -28,7 +28,13 @@ metadata:
             secretKeyRef:
               name: vp-secret
               key: mqsql-pass
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: vp-secret
+              key: mysql-user
         - name: MYSQL_DATABASE
+          value: my-database
 ---
 
 apiVersion: v1

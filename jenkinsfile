@@ -48,8 +48,14 @@ pipeline {
 	        agent { label 'KOPS' }
                 steps {
                     sh "git clone https://github.com/Ahmedmohsen74563/Devops-Project.git"
-                    sh "cd Devops-Project/"
-                    sh "kubectl apply -Rf kubernetes/"
+                    sh "cd Devops-Project/kubernetes/"
+                    sh "kubectl apply -f configmap.yaml"
+                    sh "kubectl apply -f secret.yaml"
+                    sh "kubectl apply -f mysql.yaml"
+                    sh "kubectl apply -f memc.yaml"
+                    sh "kubectl apply -f rabmq.yaml"
+                    sh "kubectl apply -f vp-app.yaml"
+                    sh "kubectl apply -f ingress.yaml"
             }
         }
             }
