@@ -50,7 +50,8 @@ pipeline {
                     sh "aws cloudformation delete-stack --stack-name eksctl-ahmed-mohsen-cluster"
                     sh "eksctl delete cluster -n ahmed-mohsen"
                     sh "eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --node-type t3.small --nodes 2"
-                    sh "kubectl apply -f /kubernetes "
+                    sh "cd kubernetes/"
+                    sh "kubectl apply -f ."
             }
         }
             }
