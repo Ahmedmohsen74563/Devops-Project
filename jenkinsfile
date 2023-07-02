@@ -48,15 +48,7 @@ pipeline {
 	        agent { label 'KOPS' }
                 steps {
                     sh "eksctl create cluster -n ahmed-mohsen --nodegroup-name ng --region us-east-2 --node-type t3.small --nodes 2"
-                    sh "cd kubernetes/"
-                    sh "kubectl apply -f configmap.yaml"
-                    sh "kubectl apply -f secret.yaml"
-                    sh "kubectl apply -f mysql.yaml"
-                    sh "kubectl apply -f memc.yaml"
-                    sh "kubectl apply -f rabmq.yaml"
-                    sh "kubectl apply -f vp-app.yaml"
-                    sh "kubectl apply -f ingress.yaml"
-
+                    sh "kubectl apply -Rf kubernetes/ "
             }
         }
             }
