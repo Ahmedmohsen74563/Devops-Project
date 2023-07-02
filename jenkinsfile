@@ -47,7 +47,6 @@ pipeline {
         stage('Kubernetes Deploy') {
 	        agent { label 'KOPS' }
                 steps {
-                    sh "git pull origin main"
                     sh "cd Devops-Project/kubernetes/"
                     sh "kubectl apply -f configmap.yaml"
                     sh "kubectl apply -f secret.yaml"
