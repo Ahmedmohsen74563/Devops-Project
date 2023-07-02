@@ -47,8 +47,8 @@ pipeline {
         stage('Kubernetes Deploy') {
 	        agent { label 'KOPS' }
                 steps {
+                    sh "git clone https://github.com/Ahmedmohsen74563/Devops-Project.git"
                     sh "cd Devops-Project/"
-                    sh "git pull"
                     sh "kubectl apply -Rf kubernetes/"
             }
         }
