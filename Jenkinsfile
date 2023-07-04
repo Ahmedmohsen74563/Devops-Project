@@ -52,7 +52,8 @@ pipeline {
                     cd Devops-Project/
                     git pull origin main
                     cd kubernetes/
-                    kubectl apply -f configmap.yaml -f secret.yaml -f mysql.yaml -f memc.yaml -f rabmq.yaml -f vp-app.yaml -f ingress.yaml
+                    kubectl delete -f configmap.yaml -f secret.yaml -f mysql.yaml -f memc.yaml -f rabmq.yaml -f vp-app.yaml -f ingress.yaml
+                    kubectl apply -f configmap.yaml -f secret.yaml -f mysql.yaml -f memc.yaml -f rabmq.yaml -f vp-app.yaml 
                        """
                     
         }
