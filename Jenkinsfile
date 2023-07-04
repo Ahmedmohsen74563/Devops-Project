@@ -47,8 +47,7 @@ pipeline {
         stage('Kubernetes Deploy') {
 	        agent { label 'KOPS' }
                 steps {
-                    sh "cd Devops-Project/"
-                    sh "git pull origin main"
+                    sh "git clone https://github.com/Ahmedmohsen74563/Devops-Project.git"
                     sh """
                     cd Devops-Project/kubernetes/
                     kubectl apply -f configmap.yaml -f secret.yaml -f mysql.yaml -f memc.yaml -f rabmq.yaml -f vp-app.yaml -f ingress.yaml
