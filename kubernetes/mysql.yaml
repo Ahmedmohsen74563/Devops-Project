@@ -36,13 +36,12 @@ spec:
               name: vp-configmap
               key: memc-url
         volumeMounts:
-        - name: my-ebs-volume
+        - name: host_path
           mountPath: /var/lib/mysql
       volumes:
-      - name: my-ebs-volume
-        awsElasticBlockStore:
-          volumeID: vol-06eef66c0e4e7a478
-          fsType: ext4
+      - name: host_path
+        hostpath: /mysql_data
+        type: DirectoryOrCreate
 ---
 
 apiVersion: v1
