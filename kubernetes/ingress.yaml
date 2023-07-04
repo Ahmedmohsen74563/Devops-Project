@@ -16,7 +16,4 @@ spec:
             name: vp-app-service
             port:
               name: http
-  dependsOn:
-  - apiVersion: v1
-    kind: Deployment
-    name: vp-app
+ 
