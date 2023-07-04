@@ -34,7 +34,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: vp-configmap
-              key: memc-url       
+              key: memc-url
         volumeMounts:
         - name: my-ebs-volume
           mountPath: /var/lib/mysql
