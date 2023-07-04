@@ -40,7 +40,8 @@ spec:
           mountPath: /var/lib/mysql
       volumes:
       - name: host_path
-        hostpath: /mysql_data
+        hostPath:
+          path: /mysql_data
           type: DirectoryOrCreate
 ---
 
