@@ -47,9 +47,8 @@ pipeline {
         stage('Kubernetes Deploy') {
 	        agent { label 'KOPS' }
                 steps {
-                    sh "cd Devops-Project"
-                    sh "git pull"
-                    sh "cd kubernetes/"
+                    sh "git clone https://github.com/Ahmedmohsen74563/Devops-Project.git"
+                    sh "cd Devops-Project/kubernetes/"
                     sh "kubectl apply -f configmap.yaml"
                     sh "kubectl apply -f secret.yaml"
                     sh "kubectl apply -f mysql.yaml"
