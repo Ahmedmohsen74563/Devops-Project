@@ -49,8 +49,10 @@ pipeline {
                 steps {
                     
                     sh """
+                    cd 
+                    rm -rf Devops-Project
                     git clone https://github.com/Ahmedmohsen74563/Devops-Project.git
-                    cd Devops-Project/
+                    cd Devops-Project
                     git pull origin main
                     cd kubernetes/
                     kubectl apply -f configmap.yaml -f secret.yaml -f mysql.yaml -f memc.yaml -f rabmq.yaml -f vp-app.yaml -f ingress.yaml
