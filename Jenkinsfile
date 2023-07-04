@@ -49,7 +49,7 @@ pipeline {
                 steps {
                     sh "cd Devops-Project"
                     sh "git pull"
-                    sh "cd Devops-Project/kubernetes/"
+                    sh "cd kubernetes/"
                     sh "kubectl apply -f configmap.yaml"
                     sh "kubectl apply -f secret.yaml"
                     sh "kubectl apply -f mysql.yaml"
