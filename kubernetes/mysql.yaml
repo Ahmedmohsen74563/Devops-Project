@@ -36,10 +36,10 @@ spec:
               name: vp-configmap
               key: memc-url
         volumeMounts:
-        - name: host_path
+        - name: mysql-host-path
           mountPath: /var/lib/mysql
       volumes:
-      - name: host_path
+      - name: mysql-host-path
         hostPath:
           path: /mysql_data
           type: DirectoryOrCreate
