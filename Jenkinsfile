@@ -49,15 +49,10 @@ pipeline {
                 steps {
                     sh "cd Devops-Project/"
                     sh "git pull origin main"
-                    sh "cd kubernetes/"
-                    sh "kubectl apply -f configmap.yaml"
-                    sh "kubectl apply -f secret.yaml"
-                    sh "kubectl apply -f mysql.yaml"
-                    sh "kubectl apply -f memc.yaml"
-                    sh "kubectl apply -f rabmq.yaml"
-                    sh "kubectl apply -f vp-app.yaml"
-                    sh "kubectl apply -f ingress.yaml"
-            }
+                    sh """
+                    cd Devops-Project/kubernetes/
+                    kubectl apply -f configmap.yaml -f secret.yaml -f mysql.yaml -f memc.yaml -f rabmq.yaml -f vp-app.yaml -f ingress.yaml
+                        """
         }
             }
         }
