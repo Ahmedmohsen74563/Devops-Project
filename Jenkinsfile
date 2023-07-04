@@ -49,8 +49,6 @@ pipeline {
                 steps {
                     
                     sh """
-                    cd 
-                    rm -rf Devops-Project
                     git clone https://github.com/Ahmedmohsen74563/Devops-Project.git
                     cd Devops-Project
                     git pull origin main
