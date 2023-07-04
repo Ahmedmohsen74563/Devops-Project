@@ -48,7 +48,6 @@ pipeline {
 	        agent { label 'KOPS' }
                 steps {
                     sh """
-                    git clone https://github.com/Ahmedmohsen74563/Devops-Project.git
                     cd Devops-Project/
                     git pull origin main
                        """
