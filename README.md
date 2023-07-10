@@ -1,7 +1,5 @@
 # Devops-Project
 Devops-Project
-# Devops-Project
-Devops-Project
 
 
 Deploy a Java web application on EKS using CI/CD Jenkins Pipeline using the following steps and high-level diagram:
