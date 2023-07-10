@@ -5,11 +5,11 @@ Devops-Project
 Deploy a Java web application on EKS using CI/CD Jenkins Pipeline using the following steps and high-level diagram:
 
 
-1.Launched and managed Jenkins instance, installed necessary plugins, configured jobs, and managed credentials.
-2.Customized Dockerfile images for MySQL and Tomcat, built and pushed images to Docker Hub.
-3.Developed Jenkins pipelines using Groovy script and Jenkinsfile to automate the build, test, and deployment process.
-4.Prepared Kubernetes YAML files for deploying applications to Kubernetes clusters on AWS EKS.
-5.Troubleshot and resolved issues related to Jenkins pipelines, Docker containers, and Kubernetes clusters.
+1. Launched and managed Jenkins instance, installed necessary plugins, configured jobs, and managed credentials.
+2. Customized Dockerfile images for MySQL and Tomcat, built and pushed images to Docker Hub.
+3. Developed Jenkins pipelines using Groovy script and Jenkinsfile to automate the build, test, and deployment process.
+4. Prepared Kubernetes YAML files for deploying applications to Kubernetes clusters on AWS EKS.
+5. Troubleshot and resolved issues related to Jenkins pipelines, Docker containers, and Kubernetes clusters.
  
 Infastructure:
 ```
