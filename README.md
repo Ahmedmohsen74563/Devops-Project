@@ -46,15 +46,13 @@ install jenkins
 
 4)Build the pipeline
 ```
-put yor github and dockerhub credentials
-build the pipeline with pipeline script (Jenkinsfile) and add this repo : https://github.com/Ahmedmohsen74563/Devops-Project.git
+#put yor github and dockerhub credentials
+#build the pipeline with pipeline script (Jenkinsfile) and add this repo : https://github.com/Ahmedmohsen74563/Devops-Project.git
 ```
 
 5)Connect to the App
 ```
-after 
-take the ip of the loadbalancer which is created from eksctl apply command for the app service after making it's type (LoadBalancer) it will open the app web page .
-
+after take the ip of the loadbalancer which is created from eksctl apply command for the app service after making it's type (LoadBalancer) it will open the app web page .
 ```
 
 
