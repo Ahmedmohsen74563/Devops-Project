@@ -1,6 +1,6 @@
 # Devops-Project
 Devops-Project
-![ahmed-mohsen](https://github.com/Ahmedmohsen74563/Devops-Project/assets/120731539/66c3911b-29ac-4bf1-bcbc-351bd1f23746)
+CI-CD with EKS and Jenkins![ahmed-mohsen](https://github.com/Ahmedmohsen74563/Devops-Project/assets/120731539/66c3911b-29ac-4bf1-bcbc-351bd1f23746)
 
 
 Deploy a Java web application on EKS using CI/CD Jenkins Pipeline using the following steps and high-level diagram:
