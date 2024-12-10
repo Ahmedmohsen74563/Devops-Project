@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: vp-configmap
-data:
-  mysql-url: mysql-service
-  memc-url: memc-service
-  rabmq-url : rabmq-service
-  
