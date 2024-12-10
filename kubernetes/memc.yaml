@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memcached
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memcached
+  template:
+    metadata:
+      labels:
+        app: memcached
+    spec:
+      containers:
+      - name: memcached
+        image: memcached:latest
+        ports:
+        - containerPort: 11211
+        env:
+        - name: DB-URL
+          valueFrom:
+            configMapKeyRef:
+              name: vp-configmap
+              key: mysql-url
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: vp-secret
+              key: mqsql-pass
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: vp-secret
+              key: mysql-user
+        - name: MYSQL_DATABASE
+          value: my-database
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: memc-service
+spec:
+  selector:
+    app: memcached
+  ports:
+    - name: http
+      protocol: TCP
+      port: 11211
+      targetPort: 11211
+  type: ClusterIP

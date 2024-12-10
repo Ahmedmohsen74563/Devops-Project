@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabmq
+  template:
+    metadata:
+      labels:
+        app: rabmq
+    spec:
+      containers:
+      - name: rabmq
+        image: rabbitmq:3-management
+        ports:
+        - containerPort: 15672
+        - containerPort: 5672
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: rabbitmq
+        - name: RABBITMQ_DEFAULT_PASS
+          value: rabbitmq
+        - name: RABBITMQ_ERLANG_COOKIE
+          value: secretcookie
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabmq-service
+spec:
+  selector:
+    app: rabmq
+  ports:
+    - name: http
+      protocol: TCP
+      port: 15672
+      targetPort: 15672
+  type: ClusterIP

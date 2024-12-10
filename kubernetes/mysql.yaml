@@ -1,0 +1,60 @@
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulset
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-sql
+  serviceName: my-sql
+  template:
+    metadata:
+      labels:
+        app: my-sql
+    spec:
+      containers:
+      - name: my-sql
+        image: ahmedmohsen98/mysql:v1.0
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: vp-secret
+              key: mqsql-pass
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: vp-secret
+              key: mysql-user
+        - name: memc-URL
+          valueFrom:
+            configMapKeyRef:
+              name: vp-configmap
+              key: memc-url
+        volumeMounts:
+        - name: mysql-host-path
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-host-path
+        hostPath:
+          path: /mysql_data
+          type: DirectoryOrCreate
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: my-sql
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP
